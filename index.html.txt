@@ -8,29 +8,12 @@
   <!-- SEO Meta Description -->
   <meta name="description" content="ChainVest is a trusted Bitcoin investment platform. Track deposits, monitor balances, and grow your crypto portfolio with security and transparency.">
 
-  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="ChainVest - Bitcoin Investment Platform">
-  <meta property="og:description" content="Invest in Bitcoin with security, transparency, and real-time tracking. ChainVest makes crypto investing simple and trustworthy.">
+  <meta property="og:description" content="Invest in Bitcoin with security, transparency, and real-time tracking.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://chainvest.onrender.com">
-  <meta property="og:image" content="https://chainvest.onrender.com/logo-dark.png">
+  <meta property="og:image" content="logo-dark.png">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ChainVest - Bitcoin Investment Platform">
-  <meta name="twitter:description" content="Invest in Bitcoin with security, transparency, and real-time tracking.">
-  <meta name="twitter:image" content="https://chainvest.onrender.com/logo-dark.png">
-
-  <!-- Scripts & Styles -->
-  <script src="/socket.io/socket.io.js"></script>
-  <style>
-    /* You can add your CSS styles here */
-  </style>
-</head>
-
-  <meta charset="utf-8">
-  <title>ChainVest</title>
-  <script src="/socket.io/socket.io.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -98,15 +81,16 @@
     <!-- Deposit Dashboard -->
     <section class="info">
       <h2>Deposit Information</h2>
-      <p><b>Deposit Address:</b> <span id="addr" class="highlight"></span></p>
-      <p><b>Account Balance:</b> <span id="balance" class="highlight">0</span> BTC</p>
+      <p><b>Deposit Address:</b> <span class="highlight">bc1qexample12345xyz</span></p>
+      <p><b>Account Balance:</b> <span class="highlight">0.35 BTC</span></p>
     </section>
 
     <!-- Recent Deposits -->
     <section>
       <h2>Recent Deposits</h2>
-      <ul id="deposits">
-        <li>No deposits yet</li>
+      <ul>
+        <li>0.15 BTC — tx a1b2c3d4</li>
+        <li>0.20 BTC — tx e5f6g7h8</li>
       </ul>
     </section>
 
@@ -126,34 +110,5 @@
   <footer>
     <p>© 2025 ChainVest. All rights reserved.</p>
   </footer>
-
-  <script>
-    const depositAddr = "{{BTC_ADDRESS}}"; // replace manually with your BTC address
-    document.getElementById("addr").textContent = depositAddr;
-
-    async function load() {
-      const res = await fetch("/api/account");
-      const data = await res.json();
-      document.getElementById("balance").textContent = data.balanceBTC;
-      const ul = document.getElementById("deposits");
-      ul.innerHTML = "";
-      if (data.deposits.length === 0) {
-        ul.innerHTML = "<li>No deposits yet</li>";
-      } else {
-        data.deposits.forEach(d => {
-          const li = document.createElement("li");
-          li.textContent = `${d.amountBTC} BTC — tx ${d.txid}`;
-          ul.appendChild(li);
-        });
-      }
-    }
-    load();
-
-    const socket = io();
-    socket.on("deposit", d => {
-      alert(`New deposit: ${d.amountBTC} BTC`);
-      load();
-    });
-  </script>
 </body>
 </html>
