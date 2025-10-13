@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ChainVest - A Bitcoin investment and deposit tracking platform",
   "main": "server-btc.js",
+  "type": "module",
   "scripts": {
     "start": "node server-btc.js"
   },

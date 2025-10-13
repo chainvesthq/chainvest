@@ -2,12 +2,16 @@
 // Watch a single BTC address and credit balance when confirmed.
 // Requires: express, axios, socket.io, lowdb
 
-const express = require('express');
-const http = require('http');
-const axios = require('axios');
-const { Server } = require('socket.io');
-const { Low, JSONFile } = require('lowdb');
-const path = require('path');
+import { JSONFilePreset } from 'lowdb/node';
+import path from 'path';
+import express from 'express';
+import http from 'http';
+import axios from 'axios';
+import { Server } from 'socket.io';
+
+const dbFile = path.join(__dirname, 'db.json');
+const db = await JSONFilePreset(dbFile, { deposits: [], balanceSats: 0 });
+await db.read();
 
 const BTC_ADDRESS = process.env.BTC_ADDRESS; // your BTC or testnet address
 const NETWORK = process.env.NETWORK || "testnet"; // "mainnet" or "testnet"
