@@ -10,8 +10,8 @@ import axios from 'axios';
 import { Server } from 'socket.io';
 
 const dbFile = path.join(__dirname, 'db.json');
-const db = await JSONFilePreset(dbFile, { deposits: [], balanceSats: 0 });
-await db.read();
+const adapter = new JSONFile(dbFile);
+const db = new Low(adapter);
 
 const BTC_ADDRESS = process.env.BTC_ADDRESS; // your BTC or testnet address
 const NETWORK = process.env.NETWORK || "testnet"; // "mainnet" or "testnet"
