@@ -32,11 +32,12 @@ const __dirname = path.dirname(__filename);
 const dbFile = path.join(process.cwd(), "db.json");
 
 const adapter = new JSONFile(dbFile);
-const db = new Low(adapter);
+const defaultData = { deposits: [], balanceSats: 0 };
+const db = new Low(adapter, defaultData);
 
 async function initDb() {
   await db.read();
-  db.data = db.data || { deposits: [], balanceSats: 0 };
+  db.data ||= defaultData;
   await db.write();
 }
 
