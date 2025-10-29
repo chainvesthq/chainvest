@@ -1,158 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>ChainVest - Bitcoin Investment Platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChainVest | Bitcoin Investment Dashboard</title>
 
-  <!-- SEO Meta Description -->
-  <meta name="description" content="ChainVest is a trusted Bitcoin investment platform. Track deposits, monitor balances, and grow your crypto portfolio with security and transparency.">
-
-  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
-  <meta property="og:title" content="ChainVest - Bitcoin Investment Platform">
-  <meta property="og:description" content="Invest in Bitcoin with security, transparency, and real-time tracking. ChainVest makes crypto investing simple and trustworthy.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://chainvest.onrender.com">
-  <meta property="og:image" content="https://chainvest.onrender.com/logo-dark.png">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ChainVest - Bitcoin Investment Platform">
-  <meta name="twitter:description" content="Invest in Bitcoin with security, transparency, and real-time tracking.">
-  <meta name="twitter:image" content="https://chainvest.onrender.com/logo-dark.png">
-
-  <!-- Scripts & Styles -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <style>
-    /* You can add your CSS styles here */
-  </style>
-</head>
 
-  <meta charset="utf-8">
-  <title>ChainVest</title>
-  <script src="/socket.io/socket.io.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f9fa;
-      color: #333;
+      background-color: #f8fafc;
+      font-family: 'Inter', sans-serif;
     }
     header {
-      background: #111;
-      color: #fff;
-      padding: 20px;
+      background-color: #111827;
+      color: white;
+      padding: 1.5rem 0;
       text-align: center;
-    }
-    header h1 {
-      margin: 0;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 14px;
-      color: #bbb;
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
     }
     main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    section {
-      background: #fff;
-      margin-bottom: 30px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
     }
     h2 {
-      margin-top: 0;
-      color: #111;
+      color: #111827;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
-    .info p {
-      margin: 5px 0;
-    }
-    .highlight {
-      font-weight: bold;
-      color: #0077cc;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #bbb;
-      margin-top: 40px;
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>ChainVest</h1>
-    <p>Your trusted Bitcoin investment platform</p>
-  </header>
+  <header>ChainVest</header>
 
   <main>
-    <!-- Deposit Dashboard -->
-    <section class="info">
+    <!-- Deposit Info -->
+    <section class="mb-8">
       <h2>Deposit Information</h2>
-      <p><b>Deposit Address:</b> <span id="addr" class="highlight"></span></p>
-      <p><b>Account Balance:</b> <span id="balance" class="highlight">0</span> BTC</p>
+      <p><strong>Deposit Address:</strong> <span id="btcAddress" class="text-blue-600">Loading...</span></p>
+      <p><strong>Account Balance:</strong> <span id="btcBalance" class="font-bold text-gray-800">0.00000000</span> BTC</p>
     </section>
 
     <!-- Recent Deposits -->
-    <section>
+    <section class="mb-8">
       <h2>Recent Deposits</h2>
-      <ul id="deposits">
-        <li>No deposits yet</li>
+      <ul id="depositList" class="list-disc ml-5 text-gray-700">
+        <li>Loading deposits...</li>
       </ul>
     </section>
 
-    <!-- Why Choose Us -->
+    <!-- Why Choose -->
     <section>
       <h2>Why Choose ChainVest?</h2>
-      <ul>
-        <li><b>Secure Transactions:</b> Your Bitcoin is stored safely on the blockchain.</li>
-        <li><b>Transparent Tracking:</b> Every deposit and balance update is visible in real-time.</li>
-        <li><b>Growth Potential:</b> Invest in the future of finance with Bitcoin.</li>
-        <li><b>User-Friendly:</b> Simple dashboard for deposits and tracking.</li>
-        <li><b>Trusted Platform:</b> Built with security and professionalism in mind.</li>
+      <ul class="list-disc ml-5 text-gray-700 leading-relaxed">
+        <li><strong>Secure Transactions:</strong> Your Bitcoin is stored safely on the blockchain.</li>
+        <li><strong>Transparent Tracking:</strong> Every deposit and balance update is visible in real-time.</li>
+        <li><strong>Growth Potential:</strong> Invest in the future of finance with Bitcoin.</li>
+        <li><strong>User-Friendly:</strong> Simple dashboard for deposits and tracking.</li>
+        <li><strong>Trusted Platform:</strong> Built with security and professionalism in mind.</li>
       </ul>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 ChainVest. All rights reserved.</p>
+  <footer class="text-center text-gray-500 text-sm pb-4">
+    &copy; 2025 ChainVest — Powered by Bitcoin Network
   </footer>
 
+  <!-- Dynamic Script -->
   <script>
-    const depositAddr = "{{BTC_ADDRESS}}"; // replace manually with your BTC address
-    document.getElementById("addr").textContent = depositAddr;
+    async function loadAccount() {
+      try {
+        const res = await fetch("/api/account");
+        const data = await res.json();
 
-    async function load() {
-      const res = await fetch("/api/account");
-      const data = await res.json();
-      document.getElementById("balance").textContent = data.balanceBTC;
-      const ul = document.getElementById("deposits");
-      ul.innerHTML = "";
-      if (data.deposits.length === 0) {
-        ul.innerHTML = "<li>No deposits yet</li>";
-      } else {
-        data.deposits.forEach(d => {
-          const li = document.createElement("li");
-          li.textContent = `${d.amountBTC} BTC — tx ${d.txid}`;
-          ul.appendChild(li);
-        });
+        document.getElementById("btcAddress").innerText = data.address || "Not set";
+        document.getElementById("btcBalance").innerText = data.balanceBTC || "0.00000000";
+
+        const list = document.getElementById("depositList");
+        list.innerHTML = "";
+        if (data.deposits && data.deposits.length > 0) {
+          data.deposits.forEach(dep => {
+            const item = document.createElement("li");
+            item.textContent = `${dep.amountBTC} BTC — confirmed at ${new Date(dep.creditedAt).toLocaleString()}`;
+            list.appendChild(item);
+          });
+        } else {
+          list.innerHTML = "<li>No recent deposits</li>";
+        }
+      } catch (err) {
+        console.error("Error loading account:", err);
+        document.getElementById("depositList").innerHTML = "<li>Error fetching data</li>";
       }
     }
-    load();
 
+    // Run immediately
+    loadAccount();
+
+    // Listen for real-time updates
     const socket = io();
-    socket.on("deposit", d => {
-      alert(`New deposit: ${d.amountBTC} BTC`);
-      load();
+    socket.on("deposit", (dep) => {
+      const list = document.getElementById("depositList");
+      const item = document.createElement("li");
+      item.textContent = `${dep.amountBTC} BTC — confirmed at ${new Date(dep.creditedAt).toLocaleString()}`;
+      list.prepend(item);
     });
   </script>
 </body>
